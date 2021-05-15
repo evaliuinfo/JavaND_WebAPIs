@@ -27,8 +27,8 @@ public class ErrorController extends ResponseEntityExceptionHandler {
         List<String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(error -> error.getField() + ": " + error.getDefaultMessage()).collect(
-                        Collectors.toList());
+                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                .collect(Collectors.toList());
 
         ApiError apiError = new ApiError(DEFAULT_VALIDATION_FAILED_MESSAGE, errors);
         return handleExceptionInternal(ex, apiError, headers, HttpStatus.BAD_REQUEST, request);
