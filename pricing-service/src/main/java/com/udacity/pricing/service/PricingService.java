@@ -14,6 +14,9 @@ import java.util.stream.LongStream;
  */
 public class PricingService {
 
+    private PricingService() {
+
+    }
     /**
      * Holds {ID: Price} pairings (current implementation allows for 20 vehicles)
      */
@@ -45,5 +48,4 @@ public class PricingService {
         return new BigDecimal(ThreadLocalRandom.current().nextDouble(1, 5))
                 .multiply(new BigDecimal(5000d)).setScale(2, RoundingMode.HALF_UP);
     }
-
 }
