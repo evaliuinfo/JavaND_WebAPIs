@@ -1,6 +1,7 @@
 package com.udacity.vehicles.api;
 
 
+import com.udacity.vehicles.domain.Condition;
 import com.udacity.vehicles.domain.car.Car;
 import com.udacity.vehicles.service.CarService;
 import org.springframework.hateoas.Resource;
@@ -75,7 +76,9 @@ class CarController {
     @PutMapping("/{id}")
     ResponseEntity<?> put(@PathVariable Long id, @Valid @RequestBody Car car) {
         car.setId(id);
-        car.setCondition("USED");
+        Condition carCondition;
+        carCondition = car.getCondition();
+        car.setCondition(carCondition);
         Resource<Car> resource = assembler.toResource(carService.save(car));
         return ResponseEntity.ok(resource);
     }
